@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro'
+---
+<Base title={'Ommisa CLI — documentation'} description={'Install and use the Ommisa CLI: login, questions, memory files, conversations, projects, and configuration.'}>
+<h1>Ommisa CLI</h1>
+<p class="lede">The Ommisa CLI runs on Node.js 18 and above and carries no runtime dependencies. The answer streams to the terminal as it is written; standard output carries only the reply, while the spinner, warnings and quota notes are written to standard error.</p>
+
+<h2>Installation</h2>
+<pre><code>npm install -g @ommisa/cli</code></pre>
+
+<h2>Signing in</h2>
+<pre><code>ommisa login
+ommisa login --read-only</code></pre>
+<p>The login uses the OAuth Device Authorization Grant (RFC 8628) against the OIML SMART identity service. The command prints a short code and opens the approval page; approving the code completes the sign-in. The credentials are stored at <code>~/.config/ommisa/credentials.json</code> with mode 0600. The identity service issues a personal access token scoped with the <code>&lt;service&gt;:&lt;read|write|admin&gt;</code> grammar, and it re-judges the token on every request, so revocation ends access within seconds.</p>
+
+<h2>Asking questions</h2>
+<pre><code>ommisa ask "What is the MPE requirement for a load cell per OIML R 60?"
+ommisa ask --lang fr "Qu'est-ce que l'EMT d'une cellule de charge ?"
+ommisa ask --fresh "..."
+ommisa ask --public "..."
+ommisa ask "..." --save
+ommisa ask "..." --conversation &lt;id&gt;</code></pre>
+<p>The command uses the member tier when the machine holds credentials and the public tier otherwise; the tier, the remaining quota and the sign-in instruction are printed with every answer. The <code>--public</code> option forces the anonymous lane even when credentials exist. The <code>--fresh</code> option bypasses the answer caches, the <code>--save</code> option stores the turn as a new conversation, and <code>--conversation</code> continues a stored conversation.</p>
+
+<h2>Memory files, conversations and projects</h2>
+<pre><code>ommisa memories
+ommisa memories add "My laboratory" "Class C load cells at 23 degrees Celsius."
+ommisa memories rm &lt;id&gt;
+ommisa conversations
+ommisa conversations show &lt;id&gt;
+ommisa conversations new "Load cells"
+ommisa conversations rm &lt;id&gt;
+ommisa files
+ommisa files &lt;project-id&gt;</code></pre>
+<p>Memory files that the account holder enables join subsequent questions as context, on the web application and in the CLI alike.</p>
+
+<h2>Session and configuration</h2>
+<pre><code>ommisa status
+ommisa whoami
+ommisa logout</code></pre>
+<p>The environment variables <code>OMMISA_ID</code>, <code>OMMISA_API</code>, <code>OMMISA_CLIENT_ID</code> and <code>OMMISA_SCOPE</code> override the defaults, and the flags <code>--issuer</code>, <code>--api</code>, <code>--client-id</code> and <code>--scope</code> override them per call.</p>
+
+<h2>Security posture</h2>
+<p>The CLI is a registered public client and holds no secret. It requests read and write scopes for the <code>oiml-ai</code> service, and the identity service judges the request against the approving account's standing at approval and at every renewal. The AI service admits the token as a read credential and refuses writes unless the approved scope states a write.</p>
+</Base>

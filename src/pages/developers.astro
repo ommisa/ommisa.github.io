@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro'
+---
+<Base title={'Developers — Ommisa'} description={'The Ommisa HTTP API and MCP server: grounded answers, passage search, and the authentication model.'}>
+<h1>Developers</h1>
+<p class="lede">Everything the command-line interface does is available over HTTP, together with an MCP server for AI agents.</p>
+
+<h2>The HTTP API</h2>
+<pre><code>curl -s https://ai.oimlsmart.org/api/ask \
+  -H 'content-type: application/json' \
+  -d '&#123;"query":"What is OIML R 60?","stream":false&#125;'</code></pre>
+<p>The answer document carries the <code>answer</code> text, the <code>citations</code> array with the quality and status of each source, the <code>confidence_note</code> statement, the <code>source_quality</code> rung and the <code>quota</code> echo. Requests with <code>stream:true</code> answer with server-sent events that report the interpretation of the question, the citations, the answer tokens and the completion. The complete surface is described by the <a href="https://ai.oimlsmart.org/api/openapi.json">OpenAPI document</a>, which covers asking, search, absence, verification, research and the member-data routes. The MCP server speaks at <code>https://ai.oimlsmart.org/mcp</code>.</p>
+
+<h2>Authentication</h2>
+<p>Anonymous callers receive the public tier and are rate limited by address. Members authenticate at the OIML SMART identity service, <a href="https://id.oimlsmart.org">id.oimlsmart.org</a>. The web application uses the authorization-code flow with PKCE, and command-line clients use the Device Authorization Grant (RFC 8628), which issues a personal access token scoped with the <code>&lt;service&gt;:&lt;read|write|admin&gt;</code> grammar. Resource servers confirm every token through RFC 7662 introspection, so a revocation or a role change takes effect within seconds.</p>
+
+<h2>The OIML SMART programme</h2>
+<ul>
+<li><a href="https://ai.oimlsmart.org/">ai.oimlsmart.org</a> — the Ommisa web application</li>
+<li><a href="https://id.oimlsmart.org">id.oimlsmart.org</a> — the identity service and account console</li>
+<li><a href="https://www.oimlsmart.org/certificates/">the OIML-CS certificate browser</a></li>
+<li><a href="https://www.oimlsmart.org/">oimlsmart.org</a> — the OIML SMART programme</li>
+</ul>
+</Base>

@@ -1,0 +1,28 @@
+:root { --brand-600:#004996; --ink:#0f172a; --ink-soft:#334155; --ink-mute:#64748b; --paper:#fff; --paper-soft:#f8fafc; --line:#e2e8f0; }
+@media (prefers-color-scheme: dark) { :root { --ink:#e2e8f0; --ink-soft:#cbd5e1; --ink-mute:#94a3b8; --paper:#0b1220; --paper-soft:#101a2c; --line:#1e293b; --brand-600:#4d8fe0; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; line-height:1.65; font-size:17px; }
+.wrap { max-width:46rem; margin:0 auto; padding:0 1.25rem; }
+header.site { border-bottom:1px solid var(--line); background:var(--paper-soft); }
+header.site .wrap { display:flex; align-items:center; gap:.6rem; padding:1rem 1.25rem; }
+.mark { width:28px; height:28px; color:var(--brand-600); flex:none; }
+.wordmark { font-weight:650; font-size:1.15rem; }
+.wordmark small { display:block; font-weight:450; font-size:.8rem; color:var(--ink-mute); }
+nav.site { border-bottom:1px solid var(--line); background:var(--paper-soft); }
+nav.site .wrap { display:flex; flex-wrap:wrap; gap:1.1rem; padding:.6rem 1.25rem; font-size:.92rem; }
+nav.site a { color:var(--ink-soft); text-decoration:none; }
+nav.site a:hover, nav.site a.here { color:var(--brand-600); font-weight:600; }
+main .wrap { padding:2.5rem 1.25rem 3rem; }
+h1 { font-size:1.9rem; margin:0 0 .8rem; } h2 { font-size:1.3rem; margin:2rem 0 .6rem; }
+code, pre { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.86em; }
+code { background:var(--paper-soft); border:1px solid var(--line); border-radius:.35rem; padding:.08rem .35rem; }
+pre { background:var(--paper-soft); border:1px solid var(--line); border-radius:.6rem; padding:.8rem 1rem; overflow-x:auto; }
+pre code { background:none; border:none; padding:0; }
+table { border-collapse:collapse; width:100%; font-size:.92rem; }
+th,td { text-align:left; border-bottom:1px solid var(--line); padding:.45rem .6rem; vertical-align:top; }
+th { color:var(--ink-mute); font-weight:600; }
+.lede { font-size:1.12rem; color:var(--ink-soft); }
+.chip { display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.03em; border:1px solid currentcolor; border-radius:.4rem; padding:.05rem .5rem; margin-right:.4rem; }
+.chip.high { color:#047857; } .chip.mid { color:#1d4ed8; } .chip.low { color:#b45309; }
+footer.site { border-top:1px solid var(--line); color:var(--ink-mute); font-size:.85rem; }
+footer.site .wrap { padding:1.2rem 1.25rem; }

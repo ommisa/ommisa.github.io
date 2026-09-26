@@ -1,0 +1,44 @@
+---
+import '../styles/global.css'
+interface Props { title: string; description?: string; }
+const { title, description } = Astro.props
+const nav = [
+  { href: '/', label: 'Ommisa' },
+  { href: '/cli/', label: 'CLI' },
+  { href: '/confidence/', label: 'Confidence' },
+  { href: '/developers/', label: 'Developers' },
+  { href: 'https://ai.oimlsmart.org/', label: 'Open the app ↗', external: true },
+]
+const here = Astro.url.pathname.replace(/index\.html$/, '').replace(/\/$/, '') || '/'
+const items = nav.map((n) => {
+  const active = n.href === here || (n.href !== '/' && here.startsWith(n.href))
+  const cls = active ? 'here' : ''
+  const external = Boolean(n.external)
+  return { ...n, cls, external }
+})
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title} | Ommisa</title>
+{description && <meta name="description" content={description} />}
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23004996' stroke-width='1.8'%3E%3Cpath d='M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z'/%3E%3C/svg%3E" />
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M18.5 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z"/></svg>
+  <div class="wordmark">Ommisa<small>the OIML SMART assistant</small></div>
+</div></header>
+<nav class="site"><div class="wrap">
+  {items.map((n) => (
+    <a href={n.href} class={n.cls} target={n.external ? '_blank' : undefined} rel={n.external ? 'noopener' : undefined}>{n.label}</a>
+  ))}
+</div></nav>
+<main><div class="wrap"><slot /></div></main>
+<footer class="site"><div class="wrap">
+  Ommisa is part of the OIML SMART programme — a public pilot. Answers are
+  for information only; the official OIML publications govern.
+</div></footer>
+</body></html>

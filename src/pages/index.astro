@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro'
+---
+<Base title={'Ommisa — the OIML SMART assistant'} description={'Ommisa is the assistant of the OIML SMART programme. It answers questions about OIML publications with clause-level citations on the web, at the command line, and over an API.'}>
+<h1>Ommisa</h1>
+<p class="lede">Ommisa is the assistant of the OIML SMART programme. It answers questions about OIML Recommendations, Documents, Basic publications and Guides, and every claim in an answer carries a citation to the exact clause of the indexed publication. When the indexed corpus does not cover a question, the service states that it has no answer instead of guessing.</p>
+
+<h2>The three surfaces</h2>
+<h3>The web application</h3>
+<p>The web application at <a href="https://ai.oimlsmart.org/">ai.oimlsmart.org</a> provides streaming answers with source chips, memory files that join subsequent questions as context, synchronized conversations, projects, and the confidence line under every answer. Public visitors receive a small daily question allowance, and signing in with an OIML SMART account unlocks the member tier with the programme's internal corpora.</p>
+<h3>The command-line interface</h3>
+<p>The <code>ommisa</code> command provides the same assistant at the terminal. It authenticates through a device code that is approved in the browser, streams the answer as it is written, and writes the reply alone to standard output so that it composes with other tools.</p>
+<pre><code>npm install -g @ommisa/cli
+ommisa login
+ommisa ask "What is the MPE requirement for a load cell per OIML R 60?"</code></pre>
+<p>The <a href="/cli/">CLI documentation</a> covers every command.</p>
+<h3>The API</h3>
+<p>A conversational HTTP API and an MCP server expose grounded answers, passage search and the publication registry to other programs. The <a href="/developers/">developer documentation</a> describes the endpoints and the authentication model.</p>
+
+<h2>Confidence is stated on every answer</h2>
+<p>Every answer carries a colored line that states how much trust the answer warrants and which sources warrant it. The <a href="/confidence/">confidence documentation</a> explains the three levels and how to read a citation.</p>
+</Base>
