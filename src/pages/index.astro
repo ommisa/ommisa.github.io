@@ -5,6 +5,22 @@ import Base from '../layouts/Base.astro'
 <h1>Ommisa</h1>
 <p class="lede">Ommisa is the assistant of the OIML SMART programme. It answers questions about OIML Recommendations, Documents, Basic publications and Guides, and every claim in an answer carries a citation to the exact clause of the indexed publication. When the indexed corpus does not cover a question, the service states that it has no answer instead of guessing.</p>
 
+<h2 id="name">The name</h2>
+<p>Ommisa is an acronym: the <strong>O</strong><strong>I</strong>ML <strong>M</strong>etrology <strong>M</strong>achine <strong>I</strong>ntelligence <strong>S</strong>tandards <strong>A</strong>ssistant. The name carries the whole proposition — the OIML's metrological corpus, served by machine intelligence that answers to the standards themselves rather than to its own imagination.</p>
+
+<h2>What Ommisa is</h2>
+<p>Ommisa is a grounded question-answering service built on the OIML corpus: every Recommendation, Document, Basic publication and Guide, their terminologies, their citation graphs, and the OIML-CS certificate register. It is not a chatbot that happens to know about metrology; it is a retrieval system that quotes the publications clause by clause, refuses when the corpus does not contain an answer, and states its confidence on every reply. The same assistant runs on the web, at the command line, and over an API, and it speaks the corpus's languages, including French, Arabic, Spanish and Chinese.</p>
+
+<h2>Sample questions from real use</h2>
+<ul>
+<li><strong>A metrologist</strong> asks <em>“What is the maximum permissible error for a class III load cell at a given load, according to OIML R 60?”</em> and receives the exact clause, the table values, and the edition the values come from.</li>
+<li><strong>A laboratory manager</strong> asks <em>“Which publications cite OIML D 30?”</em> and receives the citation graph's per-edition answer, grounded in the indexed bibliographies.</li>
+<li><strong>A certification officer</strong> asks <em>“Is there a certificate for a suspended manufacturer's instrument family?”</em> and receives the register snapshot's answer — including the honest negative, quoted from the snapshot itself.</li>
+<li><strong>A translator</strong> asks in French <em>«Quelle est la définition de la traçabilité métrologique ?»</em> and receives the French definition with its source in the International Vocabulary of Metrology.</li>
+<li><strong>An inspector</strong> photographs an instrument's nameplate and asks what it is; the answer names the instrument when the photo and the corpus agree, and says so when they do not.</li>
+<li><strong>Anyone</strong> can ask something the corpus does not cover, and Ommisa answers <em>“I don't have information on this”</em> rather than inventing one.</li>
+</ul>
+
 <h2>The three surfaces</h2>
 <h3>The web application</h3>
 <p>The web application at <a href="https://ai.oimlsmart.org/">ai.oimlsmart.org</a> provides streaming answers with source chips, memory files that join subsequent questions as context, synchronized conversations, projects, and the confidence line under every answer. Public visitors receive a small daily question allowance, and signing in with an OIML SMART account unlocks the member tier with the programme's internal corpora.</p>
@@ -12,7 +28,9 @@ import Base from '../layouts/Base.astro'
 <p>The <code>ommisa</code> command provides the same assistant at the terminal. It authenticates through a device code that is approved in the browser, streams the answer as it is written, and writes the reply alone to standard output so that it composes with other tools.</p>
 <pre><code>npm install -g @ommisa/cli
 ommisa login
-ommisa ask "What is the MPE requirement for a load cell per OIML R 60?"</code></pre>
+ommisa chat
+› What is the MPE requirement for a load cell per OIML R 60?</code></pre>
+<p>The same command answers one-off questions (<code>ommisa ask</code>), holds a thread in the terminal (<code>ommisa chat</code>), accepts piped text as context, puts an image on a question (<code>--attach</code>), emits machine-readable output for pipelines (<code>--json</code>, <code>--stream-json</code>, exit codes), and keeps a local log of every ask (<code>ommisa log</code>).</p>
 <p>The <a href="/cli/">CLI documentation</a> covers every command.</p>
 <h3>The API</h3>
 <p>A conversational HTTP API and an MCP server expose grounded answers, passage search and the publication registry to other programs. The <a href="/developers/">developer documentation</a> describes the endpoints and the authentication model.</p>
