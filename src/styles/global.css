@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@import "@oimlsmart/site-shell/tokens.css";
+@source "../../node_modules/@oimlsmart/site-shell/src/**/*.{astro,vue,ts}";
 :root { --brand-600:#004996; --ink:#0f172a; --ink-soft:#334155; --ink-mute:#64748b; --paper:#fff; --paper-soft:#f8fafc; --line:#e2e8f0; }
 @media (prefers-color-scheme: dark) { :root { --ink:#e2e8f0; --ink-soft:#cbd5e1; --ink-mute:#94a3b8; --paper:#0b1220; --paper-soft:#101a2c; --line:#1e293b; --brand-600:#4d8fe0; } }
 * { box-sizing: border-box; }
