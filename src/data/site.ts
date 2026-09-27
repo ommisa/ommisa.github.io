@@ -10,7 +10,7 @@ import type { FooterConfig } from '@oimlsmart/site-shell/config'
 export const SITE = {
   url: 'https://www.ommisa.org',
   title: 'Ommisa',
-  description: 'OIML Métrologie Machine Intelligence SMART Assistant — grounded answers from the OIML corpus of International Recommendations, Documents, Guides and Vocabularies, on the web, at the command line, and over an API.',
+  description: 'OIML Métrologie Machine Intelligence SMART Assistante — grounded answers from the OIML corpus of International Recommendations, Documents, Guides and Vocabularies, on the web, at the command line, and over an API.',
 }
 
 export const BRAND: BrandConfig = {
