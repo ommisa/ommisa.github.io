@@ -7,7 +7,7 @@ import CodeBlock from '../components/CodeBlock.astro'
 ---
 <Base title={'Ommisa — the OIML SMART assistant'} description={'Ommisa is the OIML Métrologie Machine Intelligence SMART Assistante — grounded answers from the OIML corpus of International Recommendations, on the web, at the command line, and over an API.'}>
 <div class="page-narrow">
-  <Hero title="Ommisa" lede="The OIML Métrologie Machine Intelligence SMART Assistante. Every claim in an answer carries a citation to the exact clause of the indexed publication — and when the corpus does not cover a question, Ommisa says so instead of guessing.">
+  <Hero title="Ommisa" lede="Ommisa is the OIML Métrologie Machine Intelligence SMART Assistante. Every claim in an answer carries a citation to the exact clause of the indexed publication, and a question that the corpus does not cover receives the statement that no information is available rather than a conjecture.">
     <div class="mt-7 flex flex-wrap gap-3">
       <a class="rounded-lg bg-(--color-accent) text-white px-5 py-2.5 font-medium" href="https://ai.oimlsmart.org/">Open the app</a>
       <a class="rounded-lg border border-(--rule) px-5 py-2.5" href="/cli/">Install the CLI</a>
@@ -15,25 +15,25 @@ import CodeBlock from '../components/CodeBlock.astro'
   </Hero>
 
   <Section id="name" title="The name" intro="A French acronym, built on the OIML's own name — the Organisation Internationale de Métrologie Légale.">
-    <p class="text-lg"><strong>O</strong>IML <strong>M</strong>étrologie <strong>M</strong>achine <strong>I</strong>ntelligence <strong>S</strong>MART <strong>A</strong>ssistante — en français courant, <em>l'assistante SMART à intelligence machine pour la métrologie de l'OIML</em>.</p>
+    <p class="text-lg">The letters spell <strong>O</strong>IML <strong>M</strong>étrologie <strong>M</strong>achine <strong>I</strong>ntelligence <strong>S</strong>MART <strong>A</strong>ssistante, which reads in ordinary French as <em>l'assistante SMART à intelligence machine pour la métrologie de l'OIML</em>.</p>
     <p class="mt-3 text-(--ink-soft)">The name carries the whole proposition: the OIML's metrological corpus — its International Recommendations, Documents, Guides, Basic publications and Vocabularies — served by machine intelligence that answers to the publications themselves rather than to its own imagination.</p>
   </Section>
 
   <Section id="samples" title="Sample questions from real use">
     <div class="grid gap-4 md:grid-cols-2">
-      <Card title="A metrologist"><p class="m-0 text-(--ink-soft)">“What is the maximum permissible error for a class III load cell, according to OIML R 60?” — the exact clause, the table values, the edition.</p></Card>
-      <Card title="A laboratory manager"><p class="m-0 text-(--ink-soft)">“Which publications cite OIML D 30?” — the citation graph's per-edition answer, grounded in the indexed bibliographies.</p></Card>
-      <Card title="A certification officer"><p class="m-0 text-(--ink-soft)">“Is there a certificate for a suspended manufacturer's family?” — the register snapshot's answer, including the honest negative.</p></Card>
-      <Card title="A translator"><p class="m-0 text-(--ink-soft)">«Quelle est la définition de la traçabilité métrologique ?» — the French definition, sourced from the International Vocabulary of Metrology.</p></Card>
-      <Card title="An inspector"><p class="m-0 text-(--ink-soft)">Photograph an instrument's nameplate and ask what it is — named when the photo and the corpus agree, and honest when they do not.</p></Card>
-      <Card title="Anyone"><p class="m-0 text-(--ink-soft)">Ask what the corpus does not cover, and the answer is “I don't have information on this” — never an invention.</p></Card>
+      <Card title="A metrologist"><p class="m-0 text-(--ink-soft)">A metrologist asks “What is the maximum permissible error for a class III load cell, according to OIML R 60?” and receives the exact clause, the table values and the edition from which the values come.</p></Card>
+      <Card title="A laboratory manager"><p class="m-0 text-(--ink-soft)">A laboratory manager asks “Which publications cite OIML D 30?” and receives the citation graph's per-edition answer, which the indexed bibliographies ground.</p></Card>
+      <Card title="A certification officer"><p class="m-0 text-(--ink-soft)">A certification officer asks whether the register holds a certificate for a suspended manufacturer's instrument family and receives the register snapshot's answer, which states a negative result as a quotation from the snapshot itself.</p></Card>
+      <Card title="A translator"><p class="m-0 text-(--ink-soft)">A translator asks «Quelle est la définition de la traçabilité métrologique ?» and receives the French definition with its source in the International Vocabulary of Metrology.</p></Card>
+      <Card title="An inspector"><p class="m-0 text-(--ink-soft)">An inspector photographs an instrument's nameplate and asks what it is; the answer names the instrument when the photograph and the corpus agree, and states the limits of the identification when they do not.</p></Card>
+      <Card title="Anyone"><p class="m-0 text-(--ink-soft)">Any reader may ask a question that the corpus does not cover, and the answer is the statement “I don't have information on this”, which the service issues in place of an invented answer.</p></Card>
     </div>
   </Section>
 
   <Section id="surfaces" title="The three surfaces">
     <div class="grid gap-4">
       <Card title="The web application"><p class="m-0 text-(--ink-soft)">Streaming answers with source chips, memory files that join later questions as context, synchronized conversations and projects, and the confidence line under every answer — at <a href="https://ai.oimlsmart.org/">ai.oimlsmart.org</a>. Public visitors receive a small daily allowance; an OIML SMART account unlocks the member tier.</p></Card>
-      <Card title="The command line"><p class="m-0 text-(--ink-soft)">The same assistant at the terminal: a thread that holds context, piped input, images on a question, machine-readable output for pipelines, and a local log of every ask.</p></Card>
+      <Card title="The command line"><p class="m-0 text-(--ink-soft)">The command-line interface runs the same assistant at the terminal; it holds a thread that carries the context between questions, accepts piped text as a question's context, attaches a photograph to a question, emits machine-readable output for pipelines, and keeps a local log of every question.</p></Card>
       <div>
         <CodeBlock title="install" code={`npm install -g @ommisa/cli
 ommisa login
@@ -41,12 +41,12 @@ ommisa chat
 › What is the MPE requirement for a load cell per OIML R 60?`} />
         <p class="text-(--ink-soft)">The <a href="/cli/">CLI documentation</a> covers every command.</p>
       </div>
-      <Card title="The API"><p class="m-0 text-(--ink-soft)">A conversational HTTP API and an MCP server expose grounded answers, passage search and the publication registry to other programs. The <a href="/developers/">developer documentation</a> describes the endpoints and the authentication model.</p></Card>
+      <Card title="The API"><p class="m-0 text-(--ink-soft)">A conversational HTTP API and a Model Context Protocol (MCP) server expose grounded answers, passage search and the publication registry to other programs. The <a href="/developers/">developer documentation</a> describes the endpoints and the authentication model.</p></Card>
     </div>
   </Section>
 
   <Section id="confidence" title="Confidence is stated on every answer">
-    <p class="text-(--ink-soft)">Every answer carries a line that states how much trust it warrants and which sources warrant it. The claims themselves are measured — an entailment gate verifies every claim against the passages the answer cites. The <a href="/confidence/">confidence documentation</a> explains the levels and how to read a citation.</p>
+    <p class="text-(--ink-soft)">Every answer carries a line that states how much trust the answer warrants and which sources warrant it. An entailment gate, which is a checker that verifies each claim against the passages the answer cites, measures every answer that the service serves. The <a href="/confidence/">confidence documentation</a> explains the levels and states how to read a citation.</p>
   </Section>
 </div>
 </Base>
