@@ -9,8 +9,11 @@ import CodeBlock from '../components/CodeBlock.astro'
 <div class="page-narrow">
   <Hero title="Ommisa" lede="Ommisa is the OIML Métrologie Machine Intelligence SMART Assistante. Every claim in an answer carries a citation to the exact clause of the indexed publication, and a question that the corpus does not cover receives the statement that no information is available rather than a conjecture.">
     <div class="mt-7 flex flex-wrap gap-3">
-      <a class="rounded-lg bg-(--color-accent) text-white px-5 py-2.5 font-medium" href="https://ai.oimlsmart.org/">Open the app</a>
-      <a class="rounded-lg border border-(--rule) px-5 py-2.5" href="/cli/">Install the CLI</a>
+      <a class="rounded-lg bg-(--color-accent) text-white px-5 py-2.5 font-medium" href="https://ommisa.org/">Open the app</a>
+      <a class="rounded-lg border border-(--rule) px-5 py-2.5" href="/cli/">CLI</a>
+      <a class="rounded-lg border border-(--rule) px-5 py-2.5" href="/mcp/">MCP</a>
+      <a class="rounded-lg border border-(--rule) px-5 py-2.5" href="/prompt/">Prompt your AI</a>
+      <a class="rounded-lg border border-(--rule) px-5 py-2.5" href="/login/">Login</a>
     </div>
   </Hero>
 
@@ -41,7 +44,7 @@ ommisa chat
 › What is the MPE requirement for a load cell per OIML R 60?`} />
         <p class="text-(--ink-soft)">The <a href="/cli/">CLI documentation</a> covers every command.</p>
       </div>
-      <Card title="The API"><p class="m-0 text-(--ink-soft)">A conversational HTTP API and a Model Context Protocol (MCP) server expose grounded answers, passage search and the publication registry to other programs. The <a href="/developers/">developer documentation</a> describes the endpoints and the authentication model.</p></Card>
+      <Card title="The API"><p class="m-0 text-(--ink-soft)">A conversational HTTP API and a Model Context Protocol (MCP) server expose grounded answers, passage search and the publication registry to other programs. The <a href="/mcp/">MCP page</a> describes the server, its tools and the client configurations; the <a href="/login/">Login page</a> describes the tiers, the quota and the estate sign-in; and the complete HTTP surface is described by the <a href="https://ommisa.org/api/openapi.json">OpenAPI document</a>.</p></Card>
     </div>
   </Section>
 

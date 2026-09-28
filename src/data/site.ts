@@ -25,9 +25,11 @@ export const BRAND: BrandConfig = {
 export const NAV: NavModel = {
   origin: SITE.url,
   items: [
+    { type: 'link', label: 'Login', href: '/login/', matchPrefix: '/login' },
     { type: 'link', label: 'CLI', href: '/cli/', matchPrefix: '/cli' },
+    { type: 'link', label: 'MCP', href: '/mcp/', matchPrefix: '/mcp' },
+    { type: 'link', label: 'Prompt', href: '/prompt/', matchPrefix: '/prompt' },
     { type: 'link', label: 'Confidence', href: '/confidence/', matchPrefix: '/confidence' },
-    { type: 'link', label: 'Developers', href: '/developers/', matchPrefix: '/developers' },
   ],
   productCta: { label: 'Open the app', href: 'https://ai.oimlsmart.org/', external: true },
 }
