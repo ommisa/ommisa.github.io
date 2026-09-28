@@ -8,13 +8,11 @@
    the shell's tokens (BRANDING.txt: tokens live only in the package),
    so light/dark and the brand ramps follow the programme's system. */
 
-body {
-  font-family: var(--font-sans);
-  background: var(--paper);
-  color: var(--ink);
-  line-height: 1.65;
-  font-size: 1.05rem;
-}
+body { font-family: var(--font-sans); }
+
+/* scoped to .page: the chrome's links, headings and rules are the
+   shell's — an unscoped a{} painted the header's brand link accent
+   blue (visible in dark mode, where the chrome runs light-on-dark) */
 
 .page {
   max-width: 46rem;
@@ -22,7 +20,7 @@ body {
   padding: 3rem 1.5rem 5rem;
 }
 
-h1 {
+.page h1 {
   font-family: var(--font-serif);
   font-size: 2.15rem;
   line-height: 1.15;
@@ -36,27 +34,27 @@ h1 {
   color: var(--ink-soft);
 }
 
-h2 {
+.page h2 {
   font-family: var(--font-serif);
   font-size: 1.4rem;
   margin: 2.6rem 0 0.7rem;
 }
 
-h3 {
+.page h3 {
   font-size: 1.08rem;
   margin: 1.6rem 0 0.5rem;
 }
 
-p { margin: 0.85rem 0; }
+.page p { margin: 0.85rem 0; }
 
 ul, ol { margin: 0.85rem 0; padding-left: 1.35rem; }
-li { margin: 0.4rem 0; }
-li strong { color: var(--ink); }
+.page li { margin: 0.4rem 0; }
+.page li strong { color: var(--ink); }
 
-a { color: var(--color-accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.page a { color: var(--color-accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 a:hover { color: var(--color-accent-hover); }
 
-code {
+.page code {
   font-family: var(--font-mono);
   font-size: 0.86em;
   background: var(--paper-soft);
@@ -65,7 +63,7 @@ code {
   padding: 0.1rem 0.38rem;
 }
 
-pre {
+.page pre {
   font-family: var(--font-mono);
   font-size: 0.88rem;
   line-height: 1.55;
@@ -76,9 +74,9 @@ pre {
   overflow-x: auto;
   margin: 1.3rem 0;
 }
-pre code { background: none; border: none; padding: 0; font-size: 1em; }
+.page pre code { background: none; border: none; padding: 0; font-size: 1em; }
 
-table {
+.page table {
   border-collapse: collapse;
   width: 100%;
   font-size: 0.94rem;
@@ -90,11 +88,11 @@ th, td {
   padding: 0.5rem 0.65rem;
   vertical-align: top;
 }
-th { color: var(--ink-muted); font-weight: 600; }
+.page th { color: var(--ink-muted); font-weight: 600; }
 
-hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+.page hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 
-.chip {
+.page .chip {
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -105,6 +103,6 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   padding: 0.06rem 0.5rem;
   margin-right: 0.4rem;
 }
-.chip.high { color: #047857; }
-.chip.mid { color: var(--color-accent); }
-.chip.low { color: #b45309; }
+.page .chip.high { color: #047857; }
+.page .chip.mid { color: var(--color-accent); }
+.page .chip.low { color: #b45309; }
