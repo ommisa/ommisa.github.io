@@ -1,20 +1,35 @@
 ---
 import Base from '../layouts/Base.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
 ---
 <Base title={'Answer confidence — Ommisa'} description={'Every Ommisa answer states how much trust it warrants: the three confidence levels and how to read a citation.'}>
-<h1>Answer confidence</h1>
-<p class="lede">Every answer carries a colored line beneath it. The line states how much trust the answer warrants, which sources ground it, and what the reader should verify.</p>
+<div class="page-narrow prose">
+  <Hero title="Answer confidence" lede="Every answer carries a colored line beneath it. The line states how much trust the answer warrants, which sources ground it, and what the reader should verify.">
+  </Hero>
 
-<h2><span class="chip high">High confidence</span></h2>
-<p>Every value in the answer was verified mechanically against a machine-checkable data model of the publication. The model plane is the programme's own accuracy gauge, and OIML R 60 is measured against it on every release. The reader can rely on such an answer and cite the clause as they would cite the publication itself.</p>
+  <Section title="High confidence">
+    <p class="m-0"><span class="conf-chip conf-high">High confidence</span></p>
+    <p>Every value in the answer was verified mechanically against a machine-checkable data model of the publication. The model plane is the programme's own accuracy gauge, and OIML R 60 is measured against it on every release. The reader can rely on such an answer and cite the clause as they would cite the publication itself.</p>
+  </Section>
 
-<h2><span class="chip mid">Established sources</span></h2>
-<p>The answer rests on documents that were prepared in Metanorma by the programme's editors, and the quoted passages were verified mechanically against the indexed text. The answer is sound for guidance; for normative use, the reader reads the cited clause in the official publication, as with any citation.</p>
+  <Section title="Established sources">
+    <p class="m-0"><span class="conf-chip conf-mid">Established sources</span></p>
+    <p>The answer rests on documents that were prepared in Metanorma by the programme's editors, and the quoted passages were verified mechanically against the indexed text. The answer is sound for guidance; for normative use, the reader reads the cited clause in the official publication, as with any citation.</p>
+  </Section>
 
-<h2><span class="chip low">WARNING</span></h2>
-<p>Part of the answer rests on text that optical character recognition recovered from scans. The line names exactly which sources are experimental, and the reader verifies every quotation and table value against the official publication before use.</p>
+  <Section title="Experimental sources">
+    <p class="m-0"><span class="conf-chip conf-low">WARNING</span></p>
+    <p>Part of the answer rests on text that optical character recognition recovered from scans. The line names exactly which sources are experimental, and the reader verifies every quotation and table value against the official publication before use.</p>
+  </Section>
 
-<h2>Reading an answer</h2>
-<p>Every claim carries a citation that names the publication, its edition and the exact clause, and each source chip opens the passage from which the answer drew. Normative values are quoted word for word and are checked mechanically before the answer is served. Editions are stated wherever the edition matters, and the in-force edition is preferred unless the question names another. When the indexed corpus does not cover a question, the service states that it has no answer.</p>
-<p>The service is a public pilot: answers are provided for information only, they carry no standing, and the official OIML publications govern. The measured record of every release is published on the service's <a href="https://ai.oimlsmart.org/history/">history page</a>.</p>
+  <Section title="How the claims are measured">
+    <p class="m-0">Beyond the source levels, an entailment gate measures every served answer: a checker verifies each claim against the passages the answer cites, and the confidence line states the result. When the measurement finds claims the passages do not support, the line says so — partially grounded answers are labeled, and unsupported ones carry a warning.</p>
+  </Section>
+
+  <Section title="Reading an answer">
+    <p class="m-0">Every claim carries a citation that names the publication, its edition and the exact clause, and each source chip opens the passage from which the answer drew. Normative values are quoted word for word and are checked mechanically before the answer is served. Editions are stated wherever the edition matters, and the in-force edition is preferred unless the question names another. When the indexed corpus does not cover a question, the service states that it has no answer.</p>
+    <p>The service is a public pilot: answers are provided for information only, they carry no standing, and the official OIML publications govern. The measured record of every release is published on the service's <a href="https://ai.oimlsmart.org/history/">history page</a>.</p>
+  </Section>
+</div>
 </Base>

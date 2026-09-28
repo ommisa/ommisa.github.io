@@ -1,40 +1,52 @@
 ---
 import Base from '../layouts/Base.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import Card from '../components/Card.astro'
+import CodeBlock from '../components/CodeBlock.astro'
 ---
-<Base title={'Ommisa — the OIML SMART assistant'} description={'Ommisa is the assistant of the OIML SMART programme. It answers questions about OIML publications with clause-level citations on the web, at the command line, and over an API.'}>
-<h1>Ommisa</h1>
-<p class="lede">Ommisa is the assistant of the OIML SMART programme. It answers questions about OIML Recommendations, Documents, Basic publications and Guides, and every claim in an answer carries a citation to the exact clause of the indexed publication. When the indexed corpus does not cover a question, the service states that it has no answer instead of guessing.</p>
+<Base title={'Ommisa — the OIML SMART assistant'} description={'Ommisa is the OIML Métrologie Machine Intelligence SMART Assistante — grounded answers from the OIML corpus of International Recommendations, on the web, at the command line, and over an API.'}>
+<div class="page-narrow">
+  <Hero title="Ommisa" lede="The OIML Métrologie Machine Intelligence SMART Assistante. Every claim in an answer carries a citation to the exact clause of the indexed publication — and when the corpus does not cover a question, Ommisa says so instead of guessing.">
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a class="rounded-lg bg-(--color-accent) text-white px-5 py-2.5 font-medium" href="https://ai.oimlsmart.org/">Open the app</a>
+      <a class="rounded-lg border border-(--rule) px-5 py-2.5" href="/cli/">Install the CLI</a>
+    </div>
+  </Hero>
 
-<h2 id="name">The name</h2>
-<p>Ommisa is a French acronym, built on the OIML's own name — the <em>Organisation Internationale de Métrologie Légale</em>: <strong>O</strong>IML <strong>M</strong>étrologie <strong>M</strong>achine <strong>I</strong>ntelligence <strong>S</strong>MART <strong>A</strong>ssistante — en français courant, <em>l'assistante SMART à intelligence machine pour la métrologie de l'OIML</em>. The name carries the whole proposition: the OIML's metrological corpus — its International Recommendations, Documents, Guides, Basic publications and Vocabularies — served by machine intelligence that answers to the publications themselves rather than to its own imagination.</p>
+  <Section id="name" title="The name" intro="A French acronym, built on the OIML's own name — the Organisation Internationale de Métrologie Légale.">
+    <p class="text-lg"><strong>O</strong>IML <strong>M</strong>étrologie <strong>M</strong>achine <strong>I</strong>ntelligence <strong>S</strong>MART <strong>A</strong>ssistante — en français courant, <em>l'assistante SMART à intelligence machine pour la métrologie de l'OIML</em>.</p>
+    <p class="mt-3 text-(--ink-soft)">The name carries the whole proposition: the OIML's metrological corpus — its International Recommendations, Documents, Guides, Basic publications and Vocabularies — served by machine intelligence that answers to the publications themselves rather than to its own imagination.</p>
+  </Section>
 
-<h2>What Ommisa is</h2>
-<p>Ommisa is a grounded question-answering service built on the OIML corpus: every Recommendation, Document, Basic publication and Guide, their terminologies, their citation graphs, and the OIML-CS certificate register. It is not a chatbot that happens to know about metrology; it is a retrieval system that quotes the publications clause by clause, refuses when the corpus does not contain an answer, and states its confidence on every reply. The same assistant runs on the web, at the command line, and over an API, and it speaks the corpus's languages, including French, Arabic, Spanish and Chinese.</p>
+  <Section id="samples" title="Sample questions from real use">
+    <div class="grid gap-4 md:grid-cols-2">
+      <Card title="A metrologist"><p class="m-0 text-(--ink-soft)">“What is the maximum permissible error for a class III load cell, according to OIML R 60?” — the exact clause, the table values, the edition.</p></Card>
+      <Card title="A laboratory manager"><p class="m-0 text-(--ink-soft)">“Which publications cite OIML D 30?” — the citation graph's per-edition answer, grounded in the indexed bibliographies.</p></Card>
+      <Card title="A certification officer"><p class="m-0 text-(--ink-soft)">“Is there a certificate for a suspended manufacturer's family?” — the register snapshot's answer, including the honest negative.</p></Card>
+      <Card title="A translator"><p class="m-0 text-(--ink-soft)">«Quelle est la définition de la traçabilité métrologique ?» — the French definition, sourced from the International Vocabulary of Metrology.</p></Card>
+      <Card title="An inspector"><p class="m-0 text-(--ink-soft)">Photograph an instrument's nameplate and ask what it is — named when the photo and the corpus agree, and honest when they do not.</p></Card>
+      <Card title="Anyone"><p class="m-0 text-(--ink-soft)">Ask what the corpus does not cover, and the answer is “I don't have information on this” — never an invention.</p></Card>
+    </div>
+  </Section>
 
-<h2>Sample questions from real use</h2>
-<ul>
-<li><strong>A metrologist</strong> asks <em>“What is the maximum permissible error for a class III load cell at a given load, according to OIML R 60?”</em> and receives the exact clause, the table values, and the edition the values come from.</li>
-<li><strong>A laboratory manager</strong> asks <em>“Which publications cite OIML D 30?”</em> and receives the citation graph's per-edition answer, grounded in the indexed bibliographies.</li>
-<li><strong>A certification officer</strong> asks <em>“Is there a certificate for a suspended manufacturer's instrument family?”</em> and receives the register snapshot's answer — including the honest negative, quoted from the snapshot itself.</li>
-<li><strong>A translator</strong> asks in French <em>«Quelle est la définition de la traçabilité métrologique ?»</em> and receives the French definition with its source in the International Vocabulary of Metrology.</li>
-<li><strong>An inspector</strong> photographs an instrument's nameplate and asks what it is; the answer names the instrument when the photo and the corpus agree, and says so when they do not.</li>
-<li><strong>Anyone</strong> can ask something the corpus does not cover, and Ommisa answers <em>“I don't have information on this”</em> rather than inventing one.</li>
-</ul>
-
-<h2>The three surfaces</h2>
-<h3>The web application</h3>
-<p>The web application at <a href="https://ai.oimlsmart.org/">ai.oimlsmart.org</a> provides streaming answers with source chips, memory files that join subsequent questions as context, synchronized conversations, projects, and the confidence line under every answer. Public visitors receive a small daily question allowance, and signing in with an OIML SMART account unlocks the member tier with the programme's internal corpora.</p>
-<h3>The command-line interface</h3>
-<p>The <code>ommisa</code> command provides the same assistant at the terminal. It authenticates through a device code that is approved in the browser, streams the answer as it is written, and writes the reply alone to standard output so that it composes with other tools.</p>
-<pre><code>npm install -g @ommisa/cli
+  <Section id="surfaces" title="The three surfaces">
+    <div class="grid gap-4">
+      <Card title="The web application"><p class="m-0 text-(--ink-soft)">Streaming answers with source chips, memory files that join later questions as context, synchronized conversations and projects, and the confidence line under every answer — at <a href="https://ai.oimlsmart.org/">ai.oimlsmart.org</a>. Public visitors receive a small daily allowance; an OIML SMART account unlocks the member tier.</p></Card>
+      <Card title="The command line"><p class="m-0 text-(--ink-soft)">The same assistant at the terminal: a thread that holds context, piped input, images on a question, machine-readable output for pipelines, and a local log of every ask.</p></Card>
+      <div>
+        <CodeBlock title="install" code={`npm install -g @ommisa/cli
 ommisa login
 ommisa chat
-› What is the MPE requirement for a load cell per OIML R 60?</code></pre>
-<p>The same command answers one-off questions (<code>ommisa ask</code>), holds a thread in the terminal (<code>ommisa chat</code>), accepts piped text as context, puts an image on a question (<code>--attach</code>), emits machine-readable output for pipelines (<code>--json</code>, <code>--stream-json</code>, exit codes), and keeps a local log of every ask (<code>ommisa log</code>).</p>
-<p>The <a href="/cli/">CLI documentation</a> covers every command.</p>
-<h3>The API</h3>
-<p>A conversational HTTP API and an MCP server expose grounded answers, passage search and the publication registry to other programs. The <a href="/developers/">developer documentation</a> describes the endpoints and the authentication model.</p>
+› What is the MPE requirement for a load cell per OIML R 60?`} />
+        <p class="text-(--ink-soft)">The <a href="/cli/">CLI documentation</a> covers every command.</p>
+      </div>
+      <Card title="The API"><p class="m-0 text-(--ink-soft)">A conversational HTTP API and an MCP server expose grounded answers, passage search and the publication registry to other programs. The <a href="/developers/">developer documentation</a> describes the endpoints and the authentication model.</p></Card>
+    </div>
+  </Section>
 
-<h2>Confidence is stated on every answer</h2>
-<p>Every answer carries a colored line that states how much trust the answer warrants and which sources warrant it. The <a href="/confidence/">confidence documentation</a> explains the three levels and how to read a citation.</p>
+  <Section id="confidence" title="Confidence is stated on every answer">
+    <p class="text-(--ink-soft)">Every answer carries a line that states how much trust it warrants and which sources warrant it. The claims themselves are measured — an entailment gate verifies every claim against the passages the answer cites. The <a href="/confidence/">confidence documentation</a> explains the levels and how to read a citation.</p>
+  </Section>
+</div>
 </Base>
