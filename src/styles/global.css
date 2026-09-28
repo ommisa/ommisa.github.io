@@ -1,108 +1,78 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "@oimlsmart/site-shell/tokens.css";
 @source "../../node_modules/@oimlsmart/site-shell/src/**/*.{astro,vue,ts}";
 
-/* ── the content layer ───────────────────────────────────────────────
-   The chrome (header, nav, footer) is the house shell's; these rules
-   style what only this site owns — its pages' prose. Every value rides
-   the shell's tokens (BRANDING.txt: tokens live only in the package),
-   so light/dark and the brand ramps follow the programme's system. */
+/* ── the content architecture ────────────────────────────────────────
+   Three layers, each with one job:
+     tokens   — the shell's package, the only design source (BRANDING.txt)
+     layout   — Tailwind utilities, composed in the page markup
+     prose    — the typography plugin, configured below to the tokens
+   No hand-written paragraph CSS survives here; the chrome is the
+   shell's and this file never touches it. */
 
-body { font-family: var(--font-sans); }
-
-/* scoped to .page: the chrome's links, headings and rules are the
-   shell's — an unscoped a{} painted the header's brand link accent
-   blue (visible in dark mode, where the chrome runs light-on-dark) */
-
-.page {
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
-}
-
-.page h1 {
+@utility display {
   font-family: var(--font-serif);
-  font-size: 2.15rem;
-  line-height: 1.15;
   letter-spacing: -0.01em;
-  margin: 0 0 1.1rem;
 }
 
-.lede {
-  font-size: 1.14rem;
-  line-height: 1.6;
-  color: var(--ink-soft);
+@utility page-narrow {
+  margin-inline: auto;
+  max-width: 46rem;
+  padding-block: 3rem 5rem;
+  padding-inline: 1.5rem;
 }
 
-.page h2 {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  margin: 2.6rem 0 0.7rem;
+@utility page-wide {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-block: 3rem 5rem;
+  padding-inline: 1.5rem;
 }
 
-.page h3 {
-  font-size: 1.08rem;
-  margin: 1.6rem 0 0.5rem;
+.prose {
+  --tw-prose-body: var(--ink-soft);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--ink);
+  --tw-prose-counters: var(--ink-muted);
+  --tw-prose-bullets: var(--rule);
+  --tw-prose-hr: var(--rule);
+  --tw-prose-quotes: var(--ink-soft);
+  --tw-prose-quote-borders: var(--rule);
+  --tw-prose-captions: var(--ink-muted);
+  --tw-prose-code: var(--ink);
+  --tw-prose-pre-code: var(--ink-soft);
+  --tw-prose-pre-bg: var(--paper-deep);
+  --tw-prose-pre-border: var(--rule);
+  --tw-prose-th-borders: var(--rule);
+  --tw-prose-td-borders: var(--rule);
+  font-size: 1.02rem;
 }
+.prose h1, .prose h2, .prose h3 { font-family: var(--font-serif); letter-spacing: -0.01em; }
+.prose h1 { font-size: 2.05rem; line-height: 1.15; }
+.prose h2 { font-size: 1.42rem; margin-top: 2.6rem; }
+.prose h3 { font-size: 1.12rem; }
+.prose code { font-family: var(--font-mono); font-size: 0.86em; }
+.prose pre { font-family: var(--font-mono); font-size: 0.88rem; border: 1px solid var(--tw-prose-pre-border); border-radius: 0.65rem; }
+.prose table { font-size: 0.94rem; }
 
-.page p { margin: 0.85rem 0; }
-
-ul, ol { margin: 0.85rem 0; padding-left: 1.35rem; }
-.page li { margin: 0.4rem 0; }
-.page li strong { color: var(--ink); }
-
-.page a { color: var(--color-accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
-a:hover { color: var(--color-accent-hover); }
-
-.page code {
-  font-family: var(--font-mono);
-  font-size: 0.86em;
-  background: var(--paper-soft);
-  border: 1px solid var(--rule-soft);
-  border-radius: 0.35rem;
-  padding: 0.1rem 0.38rem;
-}
-
-.page pre {
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  line-height: 1.55;
-  background: var(--paper-deep);
-  border: 1px solid var(--rule);
-  border-radius: 0.65rem;
-  padding: 1rem 1.15rem;
-  overflow-x: auto;
-  margin: 1.3rem 0;
-}
-.page pre code { background: none; border: none; padding: 0; font-size: 1em; }
-
-.page table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.94rem;
-  margin: 1.2rem 0;
-}
-th, td {
-  text-align: left;
-  border-bottom: 1px solid var(--rule);
-  padding: 0.5rem 0.65rem;
-  vertical-align: top;
-}
-.page th { color: var(--ink-muted); font-weight: 600; }
-
-.page hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
-
-.page .chip {
-  display: inline-block;
+/* the confidence chips (the /confidence/ page's vocabulary) */
+.conf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   border: 1px solid currentcolor;
-  border-radius: 0.4rem;
-  padding: 0.06rem 0.5rem;
-  margin-right: 0.4rem;
+  border-radius: 999px;
+  padding: 0.12rem 0.6rem;
 }
-.page .chip.high { color: #047857; }
-.page .chip.mid { color: var(--color-accent); }
-.page .chip.low { color: #b45309; }
+.conf-high { color: #047857; }
+.conf-mid { color: var(--color-accent); }
+.conf-low { color: #b45309; }
+
+body { font-family: var(--font-sans); }

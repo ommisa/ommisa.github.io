@@ -1,0 +1,8 @@
+---
+interface Props { title?: string; code: string }
+const { title, code } = Astro.props
+---
+<figure class="my-5 m-0">
+  {title && <figcaption class="font-mono text-xs text-(--ink-muted) border border-(--rule) border-b-0 rounded-t-xl px-4 py-2 bg-(--paper-deep)">{title}</figcaption>}
+  <pre class={['bg-(--paper-deep) border border-(--rule) rounded-xl p-4 overflow-x-auto text-sm leading-relaxed', title && 'rounded-t-none'].filter(Boolean).join(' ')}><code>{code}</code></pre>
+</figure>
