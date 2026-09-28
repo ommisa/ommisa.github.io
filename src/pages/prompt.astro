@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import CodeBlock from '../components/CodeBlock.astro'
+---
+<Base title={'Prompt — Ommisa'} description={'Prompt your own AI to work with Ommisa: copy-paste prompts and configurations that teach an agent to answer metrology questions from the OIML corpus with citations.'}>
+<div class="page-narrow prose">
+  <Hero title="Prompt" lede="This page teaches your AI to work with Ommisa. An agent that consults Ommisa answers metrology questions from the indexed OIML corpus, with citations to the exact clause, instead of from memory. Copy the prompt that fits your assistant, or connect it through MCP and skip the prompt entirely.">
+  </Hero>
+
+  <Section id="mcp-first" title="The MCP path (recommended)">
+    <p class="m-0">If your assistant speaks the Model Context Protocol, no prompt is needed: add the server once and the assistant gains the <code>ask</code> and <code>retrieve</code> tools for every conversation. The <a href="/mcp/">MCP page</a> carries the endpoint and the client configurations.</p>
+  </Section>
+
+  <Section id="api-prompt" title="The prompt for assistants that can call HTTP">
+    <p class="m-0">For an assistant that can call a URL with a header — ChatGPT with a custom connector, a Claude project with a tool, or a script — the following prompt teaches it to delegate the metrology part of a question:</p>
+    <CodeBlock title="paste into your assistant's instructions" code={`When a question concerns OIML publications, metrology,
+measurement standards, legal metrology, or OIML-CS
+certificates, do not answer from memory. Instead:
+
+1. Call POST https://ommisa.org/v1/ask
+   headers: authorization: Bearer <your Ommisa API key>
+            content-type: application/json
+   body: {"query": <the user's question, in English>, "stream": false}
+
+2. Use only the returned "answer", and quote the citations it
+   carries — the publication, the edition and the clause — beside
+   every claim you take from it.
+
+3. Respect the "confidence_note": when it carries a WARNING, say
+   that the grounding is experimental OCR data and must be
+   verified against the official publication.
+
+4. When the answer says it has no information, say so plainly
+   and do not substitute your own knowledge.
+
+Otherwise answer normally. Ommisa's API key comes from its
+developer console; the key's tier decides the daily quota.`} />
+  </Section>
+
+  <Section id="human-prompt" title="The prompt for assistants that cannot call anything">
+    <p class="m-0">An assistant without tools can still work from Ommisa's retrieved passages when you paste them in. The recipe: ask your question at <a href="https://ommisa.org/">ommisa.org</a>, copy the answer with its citations, and preface it in the other assistant with the following line:</p>
+    <CodeBlock title="paste above the copied answer" code={`Everything below the line comes from Ommisa, the OIML
+corpus assistant. Treat it as the authority on OIML content:
+quote its citations as it gives them, keep its warnings, and
+do not add metrology claims of your own beyond it.
+────────────────────────────────`} />
+  </Section>
+
+  <Section id="recipes" title="Worked recipes">
+    <p class="m-0">Three patterns cover most use. <strong>Verify a draft:</strong> paste the draft's normative claims as questions and compare the returned clauses with the draft's citations. <strong>Find the in-force edition:</strong> ask which edition of the publication is in force, and Ommisa states the edition and steers the family union it belongs to. <strong>Register lookups:</strong> ask whether a certificate exists for a manufacturer's instrument family, and the register snapshot answers, including the honest negative.</p>
+  </Section>
+</div>
+</Base>

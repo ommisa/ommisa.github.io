@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import CodeBlock from '../components/CodeBlock.astro'
+---
+<Base title={'MCP — Ommisa'} description={'Ommisa speaks the Model Context Protocol: any MCP-capable agent can ask grounded questions and retrieve passages with citations.'}>
+<div class="page-narrow prose">
+  <Hero title="MCP" lede="Ommisa is a Model Context Protocol (MCP) server. Any agent that speaks MCP — Claude Code, Cursor, VS Code agents, or a custom client — can ask Ommisa grounded questions and retrieve passages, with the same citations and the same confidence statements the web application shows.">
+  </Hero>
+
+  <Section id="endpoint" title="The endpoint">
+    <CodeBlock title="streamable HTTP (JSON-RPC 2.0, 2025-06-18)" code={`https://ommisa.org/mcp
+Authorization: Bearer oiml_…   # an API key, minted in the application`} />
+    <p class="m-0">The institutional origin <code>https://ai.oimlsmart.org/mcp</code> keeps serving the same endpoint through a permanent redirect. Authentication rides the same API-key tiering as the HTTP API: an anonymous key draws from the public tier's daily allowance, and a member key draws from the member tier. The server announces its tools in the <code>initialize</code> handshake, so a client never needs a page like this one to discover them.</p>
+  </Section>
+
+  <Section id="tools" title="The tools">
+    <p class="m-0">The <code>ask</code> tool answers a question over the indexed corpus and returns the answer with its citations, its source quality and its measured entailment support. The <code>retrieve</code> tool returns the passages themselves, ranked, with their clause anchors, for an agent that composes its own answers. Both accept the question's language preference, and both refuse — honestly — when the corpus does not cover the question.</p>
+  </Section>
+
+  <Section id="clients" title="Client configurations">
+    <CodeBlock title="Claude Code" code={`claude mcp add --transport http ommisa https://ommisa.org/mcp \\
+  --header "Authorization: Bearer oiml_…"`} />
+    <CodeBlock title="Cursor and other streamable-HTTP clients" code={`{
+  "mcpServers": {
+    "ommisa": {
+      "url": "https://ommisa.org/mcp",
+      "headers": { "Authorization": "Bearer oiml_…" }
+    }
+  }
+}`} />
+    <p class="m-0">API keys are minted in the application's developer console. A key scoped to the member tier carries the member corpora; a key scoped to the public tier carries only what the public tier serves.</p>
+  </Section>
+
+  <Section id="why" title="Why an agent should use Ommisa">
+    <p class="m-0">A general assistant that answers a metrology question from memory answers from training data that cannot name the edition, the clause or the in-force status. An agent that asks Ommisa receives an answer whose every claim carries a citation to the exact clause of an indexed publication, whose normative values are quoted word for word, and whose confidence line states what was measured. For the prompts that teach an agent to work this way, see the <a href="/prompt/">Prompt page</a>.</p>
+  </Section>
+</div>
+</Base>

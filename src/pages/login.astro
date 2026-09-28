@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import CodeBlock from '../components/CodeBlock.astro'
+---
+<Base title={'Login — Ommisa'} description={'Signing in to Ommisa: the account tiers, the daily quota, and how the estate sign-in works across oimlsmart.org and ommisa.org.'}>
+<div class="page-narrow prose">
+  <Hero title="Login" lede="Ommisa answers questions anonymously to every visitor, and it answers more to members who sign in. Signing in happens with the OIML SMART account, which is the same account that signs in to the platform at oimlsmart.org.">
+  </Hero>
+
+  <Section id="doors" title="The doors">
+    <p class="m-0">The application serves two doors, and both accept the same account. The product door is <a href="https://ommisa.org/">ommisa.org</a>, which opens the application directly, and the institutional door is <a href="https://ai.oimlsmart.org/">ai.oimlsmart.org</a>, which forwards to the product door. A session minted at one door is a cookie that lives on that door's hostname, so the doors do not share a sign-in state; signing in at either door again is a single silent hop when the account's session at the identity service, <a href="https://id.oimlsmart.org">id.oimlsmart.org</a>, is still live.</p>
+  </Section>
+
+  <Section id="tiers" title="The tiers">
+    <p class="m-0">The anonymous tier serves every visitor a daily allowance of questions over the public OIML corpus, and the allowance is counted by network address. The member tier, which an OIML SMART account unlocks, raises the daily allowance to 300 questions, adds the member corpora, the memory files, the synchronized conversations and the projects, and carries each member's own quota. The command-line interface authenticates with the Device Authorization Grant (RFC 8628), which issues a personal access token scoped by the <code>&lt;service&gt;:&lt;read|write|admin&gt;</code> grammar, and a token issued for one door serves the other.</p>
+  </Section>
+
+  <Section id="cli" title="Signing in at the terminal">
+    <CodeBlock title="device flow — approve the code in the browser" code={`ommisa login
+ommisa login --read-only
+ommisa whoami
+ommisa logout`} />
+    <p class="m-0">The device flow presents a short code for approval in the browser and stores credentials under <code>~/.config/ommisa/credentials.json</code> with mode 0600. The default scope grants read and write access, and the <code>--read-only</code> option drops the write scope, under which storing conversations and memory files is refused.</p>
+  </Section>
+
+  <Section id="privacy" title="What a sign-in carries">
+    <p class="m-0">The application is a relying party of the estate's identity service, which means it receives an identity assertion and mints its own session; it never receives a password. Revoking access at the account console takes effect at the next request, because the service confirms every session through token introspection (RFC 7662). The command line's local log of questions never leaves the machine it runs on.</p>
+  </Section>
+</div>
+</Base>
