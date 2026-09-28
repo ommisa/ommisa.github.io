@@ -6,7 +6,7 @@ import CodeBlock from '../components/CodeBlock.astro'
 ---
 <Base title={'Ommisa CLI'} description={'The Ommisa CLI runs the same assistant at the terminal: a thread that holds context, piped input, images on a question, machine-readable output, and a local log.'}>
 <div class="page-narrow prose">
-  <Hero title="Ommisa CLI" lede="The same assistant at the terminal — the reply is the only thing on standard output; the spinner, citations and warnings ride standard error, so redirection and pipes stay clean.">
+  <Hero title="Ommisa CLI" lede="The command-line interface runs the same assistant at the terminal. The reply is the only text written to standard output, while the progress indicator, the citations and the warnings ride standard error, so that redirection and pipes stay clean.">
   </Hero>
 
   <Section id="install" title="Installation">
@@ -20,7 +20,7 @@ ommisa status`} />
 ommisa login --read-only
 ommisa whoami
 ommisa logout`} />
-    <p>Sign-in runs the device flow: a code to approve in the browser, credentials stored under <code>~/.config/ommisa/credentials.json</code> (mode 0600). The default scope grants read and write; <code>--read-only</code> drops the write scope — storing conversations and memory files is then refused. Without credentials every command uses the public tier.</p>
+    <p>Sign-in runs the device authorization flow, which presents a code for approval in the browser and stores credentials under <code>~/.config/ommisa/credentials.json</code> with mode 0600. The default scope grants read and write access, the <code>--read-only</code> option drops the write scope, and a read-only sign-in refuses the storage of conversations and memory files. Without credentials, every command uses the public tier.</p>
   </Section>
 
   <Section id="asking" title="Asking questions">
@@ -30,7 +30,7 @@ ommisa ask "..." --attach nameplate.png
 cat report.md | ommisa ask "Summarize this against R 60."
 ommisa ask "..." --save
 ommisa ask -c "..."`} />
-    <p>The tier, the remaining quota and the sign-in instruction print with every answer. <code>--fresh</code> bypasses the answer caches; <code>--save</code> stores the turn as a conversation; <code>--conversation &lt;id&gt;</code> continues a stored one and <code>-c</code> the most recent. <code>--attach</code> puts a PNG, JPEG, WebP or GIF image (at most 4 MB) on the question — a photo is seen only in the turn it accompanies. Piped standard input becomes the question's context.</p>
+    <p>The tier, the remaining quota and the sign-in instruction print with every answer. The <code>--fresh</code> option bypasses the answer caches, the <code>--save</code> option stores the question and its answer as a conversation, the <code>--conversation &lt;id&gt;</code> option continues a stored conversation, and the <code>-c</code> option continues the most recent one. The <code>--attach</code> option places a PNG, JPEG, WebP or GIF image of at most 4 MB on the question, and a photograph is examined only with the question it accompanies. Piped standard input becomes the question's context.</p>
   </Section>
 
   <Section id="chat" title="A thread in the terminal">
@@ -41,7 +41,7 @@ ommisa ask -c "..."`} />
 /lang fr answers in French from here on
 /save     stores the thread to your account
 /exit`} />
-    <p>Every follow-up rides the thread's history. Markdown answers render for the terminal when standard output is a screen.</p>
+    <p>Every follow-up question rides the thread's history, and answers written in Markdown render for the terminal when standard output is a screen.</p>
   </Section>
 
   <Section id="composing" title="Composing with other tools">
@@ -49,7 +49,7 @@ ommisa ask -c "..."`} />
 ommisa ask "..." --stream-json  # NDJSON events: stage, token, done
 ommisa ask "..." -o answer.md   # the markdown reply to a file
 ommisa log [N]                  # the last asks from this machine's log`} />
-    <p>The <code>--json</code> option prints the machine-readable response — the answer, its citations, the measured confidence, the entailment support and the quota. The exit code is a contract: <strong>0</strong> for a delivered answer, <strong>1</strong> for a failure, <strong>2</strong> for a usage error, <strong>4</strong> for a spent quota, <strong>130</strong> for an interruption.</p>
+    <p>The <code>--json</code> option prints the machine-readable response, which carries the answer, its citations, the measured confidence, the entailment support and the quota. The exit code is a contract, in which <strong>0</strong> reports a delivered answer, <strong>1</strong> reports a failure, <strong>2</strong> reports a usage error, <strong>4</strong> reports a spent quota and <strong>130</strong> reports an interruption.</p>
   </Section>
 
   <Section id="memory" title="Memory files, conversations and projects">
@@ -58,11 +58,11 @@ ommisa memories add "Our lab" "We verify load cells to R 60."
 ommisa conversations
 ommisa conversations show <id>
 ommisa files [project-id]`} />
-    <p>Selected memory files join your asks as context. Conversations store threads across machines; projects bind conversations and files into one context in the web application.</p>
+    <p>Selected memory files join each question as context. Conversations store threads across machines, and projects bind conversations and files into one context in the web application.</p>
   </Section>
 
   <Section id="config" title="Configuration">
-    <p>Environment overrides — <code>OMMISA_ID</code>, <code>OMMISA_API</code>, <code>OMMISA_CLIENT_ID</code>, <code>OMMISA_SCOPE</code> — each also takes a flag. Every ask lands in the local log at <code>~/.config/ommisa/log.jsonl</code>; the log never leaves the machine.</p>
+    <p>The environment variables <code>OMMISA_ID</code>, <code>OMMISA_API</code>, <code>OMMISA_CLIENT_ID</code> and <code>OMMISA_SCOPE</code> override the defaults, and each also takes a command-line flag. Every question lands in the local log at <code>~/.config/ommisa/log.jsonl</code>, and the log never leaves the machine.</p>
   </Section>
 </div>
 </Base>
