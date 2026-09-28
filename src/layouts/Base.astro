@@ -15,5 +15,7 @@ const { title, description } = Astro.props
 <Shell title={title} description={description} brand={BRAND} nav={NAV} services={SERVICES} footer={FOOTER}>
   <link slot="head" rel="icon" href="/smart-logo-light.svg" type="image/svg+xml" />
   {Astro.slots.has('head') && <slot name="head" slot="head" />}
-  <slot />
+  <div class="page">
+    <slot />
+  </div>
 </Shell>
